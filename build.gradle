@@ -1,0 +1,67 @@
+import java.sql.Wrapper
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:0.5.6'
+//        classpath 'com.jakewharton.hugo:hugo-plugin:1.0.0'
+    }
+}
+
+apply plugin: 'android'
+//apply plugin: 'hugo'
+
+dependencies {
+    compile 'com.android.support:appcompat-v7:+'
+    compile 'com.android.support:support-v4:+'
+    instrumentTestCompile files('libs/espresso-1.0-SNAPSHOT-bundled.jar')
+}
+
+
+android {
+    buildToolsVersion "19.0"
+    compileSdkVersion 19
+
+    defaultConfig {
+        testInstrumentationRunner "com.google.android.apps.common.testing.testrunner.GoogleInstrumentationTestRunner"
+    }
+
+    sourceSets {
+
+        main {
+            manifest {
+                srcFile 'AndroidManifest.xml'
+            }
+
+            java {
+                srcDirs 'src'
+            }
+
+            resources {
+                srcDirs 'src'
+            }
+
+            aidl {
+                srcDirs 'src'
+            }
+
+            res {
+                srcDirs 'res'
+            }
+
+            assets {
+                srcDirs 'assets'
+            }
+        }
+    }
+
+
+
+    task wrapper(type: org.gradle.api.tasks.wrapper.Wrapper) {
+        gradleVersion = '1.8'
+    }
+
+}
